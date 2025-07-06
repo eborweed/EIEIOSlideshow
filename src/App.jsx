@@ -1,5 +1,6 @@
 import MemorySection from './components/MemorySection';
 import React, { useRef } from 'react';
+import { motion, useScroll, useSpring } from 'framer-motion';
 const memories = [
   { image: '/images/0.jpeg', title: 'Click the Card for Description', description: 'Good Luck Scrolling.' },
   { image: '/images/1.jpeg', title: 'My First Photo of You (Mar-8)', description: 'It was a cafe hopping sesh with one hop, but I gained so much more than matcha.' },
@@ -32,7 +33,13 @@ const memories = [
 
 export default function App() {
   const audioRef = useRef(null);
-
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll(); // use global scroll
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    mass: 0.5,
+  });
   const playAudio = () => {
     if (!audioRef.current) {
       audioRef.current = new Audio('/back-to-december.mp3');
@@ -44,11 +51,47 @@ export default function App() {
     }
   };
 
-  return (
-    <main>
-      {memories.map((mem, index) => (
-        <MemorySection key={index} {...mem} playAudio={playAudio} />
-      ))}
-    </main>
+
+    return (
+    <>
+      {/* 🌸 Lavender Progress Bar */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.2, duration: 1 }}
+        style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '6px',
+          zIndex: 9999,
+          background: 'rgba(44, 42, 66, 0.6)', // subtle track color
+          overflow: 'hidden',
+          backdropFilter: 'blur(6px)',
+        }}
+      >
+        <motion.div
+          style={{
+            height: '100%',
+            width: '100%',
+            originX: 0,
+            scaleX: smoothProgress,
+            background: 'linear-gradient(to right, #c4a7e7, #b48fdc)',
+            boxShadow: '0 0 12px rgba(196,167,231,0.6)',
+          }}
+        />
+      </motion.div>
+
+      {/* 🔽 Scrollable Content */}
+      <main ref={containerRef}>
+        {memories.map((mem, index) => (
+          <MemorySection key={index} {...mem} />
+        ))}
+      </main>
+    </>
   );
 }
+
+
+
