@@ -61,7 +61,7 @@ export default function App() {
         transition={{ delay: 0.2, duration: 1 }}
         style={{
           position: 'fixed',
-          top: 10,
+          top: 5,
           left: 0,
           width: '100%',
           height: '6px',
