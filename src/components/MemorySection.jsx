@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 
-export default function MemorySection({ image, title, description, index }) {
+export default function MemorySection({ image, title, description, playAudio }) {
   const ref = useRef(null);
   const [showDescription, setShowDescription] = useState(false);
 
@@ -13,7 +13,10 @@ export default function MemorySection({ image, title, description, index }) {
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.85]);
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
 
-  const handleClick = () => setShowDescription(prev => !prev);
+  const handleClick = () => {
+    setShowDescription(prev => !prev);
+    playAudio(); // shared audio logic
+  };
 
   return (
     <section
@@ -30,7 +33,7 @@ export default function MemorySection({ image, title, description, index }) {
         onClick={handleClick}
         whileHover={{
           scale: 1.02,
-          boxShadow: '0 0 30px rgba(196,167,231,0.25)',
+          boxShadow: '0 0 30px rgba(196,167,231,0.2)',
         }}
         style={{
           width: '90vw',
@@ -54,7 +57,6 @@ export default function MemorySection({ image, title, description, index }) {
           transition: 'all 0.4s ease-in-out',
         }}
       >
-        {/* Text container */}
         <div
           style={{
             position: 'absolute',
@@ -68,7 +70,6 @@ export default function MemorySection({ image, title, description, index }) {
             backdropFilter: 'blur(6px)',
           }}
         >
-          {/* Title with glow */}
           <h2
             style={{
               margin: 0,
@@ -80,7 +81,6 @@ export default function MemorySection({ image, title, description, index }) {
             {title}
           </h2>
 
-          {/* Description with smooth fade */}
           <motion.p
             initial={{ opacity: 0, y: 10 }}
             animate={showDescription ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
