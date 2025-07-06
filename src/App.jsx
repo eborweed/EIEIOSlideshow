@@ -86,7 +86,7 @@ export default function App() {
       {/* 🔽 Scrollable Content */}
       <main ref={containerRef}>
         {memories.map((mem, index) => (
-          <MemorySection key={index} {...mem} />
+          <MemorySection key={index} {...mem} playAudio={playAudio}/>
         ))}
       </main>
     </>
