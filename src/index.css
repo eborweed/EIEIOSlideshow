@@ -1,0 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  max-width: 100vw;
+}
+
+body, html {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #1c1b2f; /* Dark lavender base */
+  color: #e0e0f0;
+  overflow-x: hidden;
+}
