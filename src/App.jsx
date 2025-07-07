@@ -26,7 +26,7 @@ const memories = [
   { image: '/images/13.jpeg', title   : 'Cruise (Jun-24)', description: 'I really didnt expect this to be that good, you really cooked with this one though you did almost make me drink enough beer to throw up.' },
   { image: '/images/14.jpeg', title: 'Jeju (Jun-27)', description  : 'Not the best start, but Im glad we made the trip ours, I tried really hard to make sure you wouldnt leave disappointed with one of our last memories, I wanted to see your smile run brightest here maybe for the last time. I hope I succeeded.' },
   { image: '/images/15.jpeg', title: 'Last Photo With You (Jun-30)', description: 'On the way to the airport, I was so fucking sad I was already crying while you slept, then the stupid taxi driver had to make us rush our goodbye hug with the wrong stop too. I cried for hours on the plane, hoping that wouldnt be the last time I saw you, and if you missed me even close to how much I was feeling.' },
-
+  { image: '', title: '4 Months of Knowing You (Jul-8)', description: 'Four months since I met you, and yet it feels like forever. Maybe you will forget this chapter eventually. But I needed to show you our story through my eyes. If I could go back in time I would fall in love with you all over again.'},
 
 
 ];
